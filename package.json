@@ -1,0 +1,33 @@
+{
+  "name": "online-calendar-be",
+  "version": "1.0.0",
+  "description": "Online calendar for organizing user actions",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BohdanShchur/online-calendar-be.git"
+  },
+  "author": "Bohdan Shchur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BohdanShchur/online-calendar-be/issues"
+  },
+  "homepage": "https://github.com/BohdanShchur/online-calendar-be#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "apollo-server": "^3.6.7",
+    "apollo-server-errors": "^3.3.1",
+    "apollo-server-express": "^3.6.7",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "graphql": "^16.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.1"
+  }
+}
