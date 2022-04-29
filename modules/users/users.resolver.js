@@ -2,9 +2,9 @@ const userService = require('./users.service');
 const {BAD_REQUEST} = require('../../consts/statusCodes');
 const RuleError = require('../../errors/ruleError');
 const usersQuery = {
-    getAllUsers: async() => {
+    getUserById: async(_, {id}) => {
         try{
-            return userService.getAllUsers();
+            return userService.getUserById(id);
         } catch(e) {
             return {
                 message: e.message,
@@ -12,9 +12,10 @@ const usersQuery = {
             }
         }
     },
-    getUserById: async(_, {id}) => {
+
+    loginUser: async(_, {loginInput}) => {
         try{
-            return userService.getUserById(id);
+            return userService.loginUser(loginInput);
         } catch(e) {
             return {
                 message: e.message,
@@ -25,9 +26,9 @@ const usersQuery = {
 };
 
 const usersMutations = {
-    createUser: async (_, {user}) => {
+    registerUser: async (_, {user}) => {
         try{
-            return userService.createUser(user);
+            return userService.registerUser(user);
         } catch(e) {
             return {
                 message: e.message,

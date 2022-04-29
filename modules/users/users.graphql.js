@@ -18,6 +18,11 @@ const userInput = `
         confirmed: Boolean,
         rememberMe: Boolean
     }
+
+    input loginInput {
+        email: String,
+        password: String
+    }
 `
 
 module.exports = {
