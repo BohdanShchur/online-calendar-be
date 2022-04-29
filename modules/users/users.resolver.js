@@ -1,30 +1,43 @@
 const userService = require('./users.service');
-
+const {BAD_REQUEST} = require('../../consts/statusCodes');
+const RuleError = require('../../errors/ruleError');
 const usersQuery = {
     getAllUsers: async() => {
         try{
-            return await userService.getAllUsers();
+            return userService.getAllUsers();
         } catch(e) {
-            console.log("ERROR", e)
+            return {
+                message: e.message,
+                statusCode: e.statusCode
+            }
         }
     },
-    getUserById: async() => {
+    getUserById: async(_, {id}) => {
         try{
-            return await userService.getUserById();
+            return userService.getUserById(id);
         } catch(e) {
-            console.log("ERROR", e)
-        }
-    },
-    createUser: async () => {
-        try{
-            return await userService.createUser();
-        } catch(e) {
-            console.log("ERROR", e)
+            return {
+                message: e.message,
+                statusCode: e.statusCode
+            }
         }
     }
+};
 
+const usersMutations = {
+    createUser: async (_, {user}) => {
+        try{
+            return userService.createUser(user);
+        } catch(e) {
+            return {
+                message: e.message,
+                statusCode: e.statusCode
+            }
+        }
+    }
 }
 
 module.exports = {
-    usersQuery
+    usersQuery,
+    usersMutations
 }

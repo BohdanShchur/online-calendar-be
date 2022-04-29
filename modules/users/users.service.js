@@ -1,27 +1,27 @@
+const RuleError = require('../../errors/ruleError');
+const {BAD_REQUEST} = require('../../consts/statusCodes');
 const Users = require('./users.model');
 
 class UserService {
     async getAllUsers () {
         const items = await Users.find()
-        console.log("items", items)
         return items
     }
-    async getUserById() {
-        const foundUser = await Users.findById("626b15acad168c3ab26ed5f9").exec();
+    async getUserById(id) {
+        const foundUser = await Users.findById(id).exec();
     
         if (!foundUser) {
-          console.log("NOT FOUND")
+          return new RuleError('Error', 404);
         }
     
         return foundUser;
     }
-    async createUser() {
-        const newUser = await new Users({
-            firstName: 'test',
-            lastName: 'test'
-        }).save();
+    async createUser(user) {
+        const candidate = await Users.findOne({email: user.email});
+        if(candidate) return new RuleError("User already exist", BAD_REQUEST);
+        const newUser = await new Users(user).save();
         return newUser;
     }
 }
 
-module.exports = new UserService()
+module.exports = new UserService();

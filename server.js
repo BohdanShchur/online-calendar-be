@@ -17,10 +17,10 @@ const server = new ApolloServer({
 mongoose.connect(process.env.MONGO_URL)
     .then(async () => {
         console.log('MongoDB connected');
-        await server.start();
+        await server.start()
         server.applyMiddleware({app});
         return app.listen({port: 5000}) 
     })
     .then(() => {
-        console.log(`Server running on port 5000`);
+        console.log(`Server running on PORT 5000`);
     })
