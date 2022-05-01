@@ -17,7 +17,6 @@ const eventType = `
 
 const eventInput = `
     input EventInput {
-        userId: ID!
         title: String
         description: String
         eventTimeRange: inputEventTimeRange

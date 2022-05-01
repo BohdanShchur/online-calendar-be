@@ -24,7 +24,7 @@ const typeDefs = gql`
         loginUser(loginInput: loginInput): UserResult
 
         #Event Queries
-        getEventsByUserId(userId: ID!): [Event!]!,
+        getEventsByUserId: [Event!]!,
     }
 
     type Mutation {
@@ -32,7 +32,7 @@ const typeDefs = gql`
         registerUser(user: UserInput!): UserResult
 
         #Events Mutations
-        createEvent(event: EventInput!, userId: ID!): EventResult
+        createEvent(event: EventInput!): EventResult
         deleteEvent(id: ID!): EventResult
         updateEvent(event: EventInput!, id: ID!): EventResult
     }

@@ -3,10 +3,9 @@ const jwt = require('jsonwebtoken');
 const RuleError = require('../../errors/ruleError');
 const {BAD_REQUEST} = require('../../consts/statusCodes');
 const Users = require('./users.model');
+const {SECRET} = require('../../utils/dotEnv');
+const { JWTClient } = require('../../utils/jwt-client');
 
-require('dotenv').config({
-    path: '.env',
-});
 class UserService {
     async getUserById(id) {
         const foundUser = await Users.findById(id).exec();
@@ -30,25 +29,16 @@ class UserService {
             password: encryptedPassword
         });
 
-        const token = jwt.sign(
-            {userId: newUser._id, email: user.email},
-            process.env.SECRET,
-            { expiresIn: "1h"}
-        )
-        newUser.token = token;
+        const token = new JWTClient(user.userId, user.email)
+        newUser.token = token.createToken();
         const res = await newUser.save();
         return res
     }
     async loginUser({email, password}) {
         const user = await Users.findOne({email});
         if (user && (await bcrypt.compare(password, user.password))) {
-    
-            const token = jwt.sign(
-                {userId: user._id, email},
-                process.env.SECRET,
-                { expiresIn: "1h"}
-            )
-            user.token = token;
+            const token = new JWTClient(user._id, user.email);
+            user.token = token.generateAccessToken();
             return user;
         }
 

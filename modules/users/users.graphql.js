@@ -6,7 +6,8 @@ const userType = `
         email: String,
         password: String,
         confirmed: Boolean,
-        rememberMe: Boolean
+        rememberMe: Boolean,
+        token: String
     }
 `;
 const userInput = `

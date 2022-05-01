@@ -7,6 +7,7 @@ class EventService {
         return events;
     }
     async createEvent (event, userId) {
+        console.log(userId)
         const newEvent = await new Events({
             ...event,
             userId
@@ -29,8 +30,17 @@ class EventService {
         if (!foundEvent) {
              throw new RuleError("Event does not exist", NOT_FOUND);
         }
-        
+
         return Events.findByIdAndUpdate(id, event)
+    }
+    async getEventById (id) {
+        const foundEvent = await Events.findById(id).lean().exec();
+
+        if (!foundEvent) {
+             throw new RuleError("Event does not exist", NOT_FOUND);
+        }
+
+        return foundEvent;
     }
 }
 

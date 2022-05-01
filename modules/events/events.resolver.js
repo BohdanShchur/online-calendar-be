@@ -1,7 +1,7 @@
 const EventService = require('./events.service');
 
 const eventsQuery = {
-    getEventsByUserId: async (_, {userId}) => {
+    getEventsByUserId: async (_, {}, {userId} ) => {
         try{
             return EventService.getEventsByUserId(userId);
         } catch(e) {
@@ -14,7 +14,7 @@ const eventsQuery = {
 };
 
 const eventsMutations = {
-    createEvent: async (_, {event, userId}) => {
+    createEvent: async (_, {event}, {userId}) => {
         try{
             return EventService.createEvent(event, userId);
         } catch(e) {
