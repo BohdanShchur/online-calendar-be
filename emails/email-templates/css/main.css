@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap');
+
+* {
+  margin: 0;
+}
+
+body {
+  max-width: 1440px;
+  font-family: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.responseTitle {
+  display: none;
+}
+
+.desktopTitle {
+  margin-top: 40px;
+  margin-bottom: 26px;
+  font-size: 59px;
+  font-weight: 300;
+  line-height: 80px;
+  letter-spacing: -0.005em;
+  text-align: center;
+}
+
+.contentWrapper {
+  margin-bottom: 20px;
+}
+
+.text, .link {
+  margin-bottom: 35px;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+  color: #000000;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.code {
+  font-weight: 700;
+  font-size: 24px;
+  color: #000000;
+}
+
+.continue {
+  display: block;
+  width: 213px;
+  height: 52px;
+  background: #000000;
+  text-align: center;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.continue a {
+  font-style: normal;
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.productTable {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 31px;
+}
+
+.tableHead {
+  border-top: 1px solid #dedede;
+}
+
+.tableHead th, .paymentText {
+  padding: 10px 0;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;letter-spacing: 0.001em;
+  color: #242424;
+}
+
+.tableHead th:first-child {
+  padding-left: 8px;
+}
+
+.tableBody {
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+}
+
+.product {
+  width: 50%;
+}
+
+.tableBody td, .paymentPrice {
+  padding: 32px 0;
+  text-align: left;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.0015em;
+  text-transform: capitalize;
+  color: #242424;
+}
+
+.productWrapper {
+  display: flex;
+}
+
+.productImg {
+  margin-right: 32px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.productTitle {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.productMaterial, .productSizeResponsive {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.0025em;
+}
+
+.productMaterial {
+  margin-top: 5px;
+}
+.productSizeResponsive {
+  display: none;
+  margin-top: 10px;
+}
+
+.productSize, .productQuantity {
+  display: inline;
+  padding: 6px 12px;
+  border: 1px solid rgba(91, 91, 91, 0.2);
+  border-radius: 4px;
+}
+
+.payment {
+  margin-right: 5px;
+  margin-left: auto;
+  margin-bottom: 41px;
+  text-align: end;
+}
+
+.paymentText {
+  margin-right: 14px;
+}
+
+.bestWishes {
+  margin-bottom: 25px;
+}
+
+footer {
+  padding-top: 20px;
+  border-top: 1px solid #bdbdbd;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+
+
+
+
+
+
+
+

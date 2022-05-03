@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const RuleError = require('../../errors/ruleError');
 const {BAD_REQUEST} = require('../../consts/statusCodes');
 const Users = require('./users.model');
-const {SECRET} = require('../../utils/dotEnv');
 const { JWTClient } = require('../../utils/jwt-client');
+const {validateLogin, validateUser} = require('../../validators/user.validator');
+const sendMail = require('../../utils/email');
 
 class UserService {
     async getUserById(id) {
@@ -17,6 +17,10 @@ class UserService {
         return foundUser;
     }
     async registerUser(user) {
+        const invalid = validateUser(user);
+        if (invalid) {
+            throw invalid;
+        }
         const candidate = await Users.findOne({email: user.email});
         if(candidate) {
             return new RuleError("User already exist", BAD_REQUEST);
@@ -32,9 +36,14 @@ class UserService {
         const token = new JWTClient(user.userId, user.email)
         newUser.token = token.createToken();
         const res = await newUser.save();
+        await sendMail(user.email, token)
         return res
     }
     async loginUser({email, password}) {
+        const invalid = validateLogin({email, password});
+        if (invalid) {
+            throw invalid;
+        }
         const user = await Users.findOne({email});
         if (user && (await bcrypt.compare(password, user.password))) {
             const token = new JWTClient(user._id, user.email);
@@ -42,7 +51,7 @@ class UserService {
             return user;
         }
 
-        return new RuleError("Incorrect Password", BAD_REQUEST);
+        return new RuleError("Incorrect Email or Password", BAD_REQUEST);
     }
 }
 

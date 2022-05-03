@@ -1,0 +1,12 @@
+extends template
+block headerText
+    h1.responseTitle You were successfully signed up
+block subheaderText
+    h1.desktopTitle You were successfully signed up
+block content
+    div.contentWrapper
+        p.text Congratulations! #[br] You were successfully signed up on Online Calendar by Bohdan Shchur, the only thing left is to confirm your e-mail:
+        button.continue
+            a(href=frontendUrl + `/confirmation/` + token) confirm e-mail
+        p.text or follow the link: #[br]
+            a.link(href=frontendUrl + `/confirmation/` + token) #{frontendUrl + `/confirmation/` + token}

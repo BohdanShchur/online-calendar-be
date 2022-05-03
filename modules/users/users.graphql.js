@@ -17,12 +17,12 @@ const userInput = `
         email: String,
         password: String,
         confirmed: Boolean,
-        rememberMe: Boolean
     }
 
-    input loginInput {
+    input LoginInput {
         email: String,
-        password: String
+        password: String,
+        rememberMe: Boolean
     }
 `
 

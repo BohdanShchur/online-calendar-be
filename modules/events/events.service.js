@@ -7,12 +7,10 @@ class EventService {
         return events;
     }
     async createEvent (event, userId) {
-        console.log(userId)
         const newEvent = await new Events({
             ...event,
             userId
         }).save();
-        console.log(newEvent);
         return newEvent;
     }
     async deleteEvent (id) {

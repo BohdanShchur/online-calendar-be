@@ -4,7 +4,6 @@ const eventType = `
         userId: ID!
         title: String
         description: String
-        eventDate: Date
         eventTimeRange: eventTimeRange
         notificationTime: Date
     }
@@ -19,13 +18,19 @@ const eventInput = `
     input EventInput {
         title: String
         description: String
-        eventTimeRange: inputEventTimeRange
-        notificationTime: Date
+        eventTimeRange: InputEventTimeRange
+        notificationTime: Notification
     }
 
-    input inputEventTimeRange {
+    input InputEventTimeRange {
         start: Date
         end: Date
+    }
+
+    enum Notification {
+        MIN
+        MID
+        MAX
     }
 `;
 

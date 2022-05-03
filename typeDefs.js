@@ -21,7 +21,7 @@ const typeDefs = gql`
     type Query {
         # User Queries
         getUserById(id: ID!): UserResult,
-        loginUser(loginInput: loginInput): UserResult
+        loginUser(loginInput: LoginInput): UserResult
 
         #Event Queries
         getEventsByUserId: [Event!]!,
