@@ -4,7 +4,7 @@ const {BAD_REQUEST} = require('../../consts/statusCodes');
 const Users = require('./users.model');
 const { JWTClient } = require('../../utils/jwt-client');
 const {validateLogin, validateUser} = require('../../validators/user.validator');
-const sendMail = require('../../utils/email');
+const {sendConfirmEmail} = require('../../utils/email');
 
 class UserService {
     async getUserById(id) {
@@ -36,7 +36,7 @@ class UserService {
         const token = new JWTClient(user.userId, user.email)
         newUser.token = token.createToken();
         const res = await newUser.save();
-        await sendMail(user.email, token)
+        await sendConfirmEmail(user.email, token)
         return res
     }
     async loginUser({email, password}) {

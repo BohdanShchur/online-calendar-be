@@ -19,18 +19,12 @@ const eventInput = `
         title: String
         description: String
         eventTimeRange: InputEventTimeRange
-        notificationTime: Notification
+        notificationTime: Int
     }
 
     input InputEventTimeRange {
         start: Date
         end: Date
-    }
-
-    enum Notification {
-        MIN
-        MID
-        MAX
     }
 `;
 

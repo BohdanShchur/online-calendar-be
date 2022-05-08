@@ -14,9 +14,9 @@ const eventsQuery = {
 };
 
 const eventsMutations = {
-    createEvent: async (_, {event}, {userId}) => {
+    createEvent: async (_, {event}, {userId, email}) => {
         try{
-            return EventService.createEvent(event, userId);
+            return EventService.createEvent(event, userId, email);
         } catch(e) {
             return {
                 message: e.message,

@@ -1,0 +1,12 @@
+extends template
+block headerText
+    h1.responseTitle Notification 
+block subheaderText
+    h1.desktopTitle Notification
+block content
+    div.contentWrapper
+        p.text notification
+        button.continue
+            a(href=frontendUrl + `/confirmation/` + token) confirm e-mail
+        p.text or follow the link: #[br]
+            a.link(href=frontendUrl + `/confirmation/` + token) #{frontendUrl + `/confirmation/` + token}

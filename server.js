@@ -1,10 +1,12 @@
 const mongoose = require("mongoose");
-const {ApolloServer, AuthenticationError} = require("apollo-server");
+const {ApolloServer} = require("apollo-server");
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
-const {SECRET, MONGO_URL} = require('./utils/dotEnv');
+const {MONGO_URL} = require('./utils/dotEnv');
 const {jwtClient} = require('./utils/jwt-client');
 const RuleError = require("./errors/ruleError");
+
+const  {verifyEmail} = require('./utils/email');
 
 const server = new ApolloServer({
     typeDefs,
@@ -16,11 +18,11 @@ const server = new ApolloServer({
         const { token } = req.headers || '';
         if (token) {
          try {
-             const { userId } = jwtClient.decodeToken(String(token));
+             const { userId, email } = jwtClient.decodeToken(String(token));
              if (!userId) {
                 return null;
                 }           
-            return {userId};
+            return {userId, email};
         } catch (e) {
             throw new RuleError(e.message, e.statusCode);
             }
@@ -31,7 +33,7 @@ const server = new ApolloServer({
 mongoose.connect(MONGO_URL)
     .then(async () => {
         console.log('MongoDB connected');
-        return server.listen({port: 5000}) 
+        return server.listen({port: 5000});
     })
     .then(({url}) => {
         console.log(`Server running on ${url}`);
