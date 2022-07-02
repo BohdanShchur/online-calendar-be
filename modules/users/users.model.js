@@ -6,7 +6,6 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
     confirmed: Boolean,
-    rememberMe: Boolean,
     token: String,
 });
 

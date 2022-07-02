@@ -6,8 +6,6 @@ const {MONGO_URL} = require('./utils/dotEnv');
 const {jwtClient} = require('./utils/jwt-client');
 const RuleError = require("./errors/ruleError");
 
-const  {verifyEmail} = require('./utils/email');
-
 const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -18,7 +16,7 @@ const server = new ApolloServer({
         const { token } = req.headers || '';
         if (token) {
          try {
-             const { userId, email } = jwtClient.decodeToken(String(token));
+             const { userId, email } = jwtClient.decodeToken(token);
              if (!userId) {
                 return null;
                 }           

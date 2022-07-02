@@ -5,8 +5,15 @@ const { createNotificationTime } = require('../../utils/dateHelper');
 const { sendNotification } = require('../../utils/email');
 
 class EventService {
-    async getEventsByUserId(userId) {
-        const events = await Events.find({ userId }).exec();
+    async getEventsByUserId(userId, filter) {
+        const filterOptions = {userId};
+        if (filter?.start) {
+            filterOptions['eventTimeRange.start'] = {$gte: filter.start};
+        }
+        if (filter?.end) {
+            filterOptions['eventTimeRange.start'] = {$lte: filter.end};
+        }
+        const events = await Events.find(filterOptions).exec();
         return events;
     }
     async createEvent(event, userId, email) {
@@ -18,10 +25,9 @@ class EventService {
         const notificationTime = createNotificationTime(eventTimeRange, notification);
         const newEvent = await new Events({
             ...event,
-            notificationTime,
             userId
         }).save();
-        sendNotification(notificationTime, email);
+        await sendNotification(notificationTime, email);
         return newEvent;
     }
     async deleteEvent(id) {
@@ -33,7 +39,7 @@ class EventService {
 
         return Events.findByIdAndDelete(id);
     }
-    async updateEvent(event, id) {
+    async updateEvent(event, id, email) {
         const invalid = validateEvent(event);
         if (invalid) {
             throw invalid;

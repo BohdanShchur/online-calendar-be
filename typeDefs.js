@@ -21,15 +21,16 @@ const typeDefs = gql`
     type Query {
         # User Queries
         getUserById(id: ID!): UserResult,
-        loginUser(loginInput: LoginInput): UserResult
 
         #Event Queries
-        getEventsByUserId: [Event!]!,
+        getEventsByUserId(filter: EventFilterInput): [Event!]!,
     }
 
     type Mutation {
         # User Mutations
+        loginUser(loginInput: LoginInput): UserResult
         registerUser(user: UserInput!): UserResult
+        googleUser(idToken: String!, rememberMe: Boolean): UserResult
 
         #Events Mutations
         createEvent(event: EventInput!): EventResult

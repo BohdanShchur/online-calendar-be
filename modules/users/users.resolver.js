@@ -12,7 +12,9 @@ const usersQuery = {
             }
         }
     },
+};
 
+const usersMutations = {
     loginUser: async(_, {loginInput}) => {
         try{
             return userService.loginUser(loginInput);
@@ -22,10 +24,7 @@ const usersQuery = {
                 statusCode: e.statusCode
             }
         }
-    }
-};
-
-const usersMutations = {
+    },
     registerUser: async (_, {user}) => {
         try{
             return userService.registerUser(user);
@@ -35,7 +34,9 @@ const usersMutations = {
                 statusCode: e.statusCode
             }
         }
-    }
+    },
+    googleUser: (_, args) => 
+        userService.loginGoogleUser(args.idToken, args.rememberMe)
 }
 
 module.exports = {

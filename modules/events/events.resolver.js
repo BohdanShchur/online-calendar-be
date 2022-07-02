@@ -1,9 +1,9 @@
 const EventService = require('./events.service');
 
 const eventsQuery = {
-    getEventsByUserId: async (_, {}, {userId} ) => {
+    getEventsByUserId: async (_, {filter}, {userId} ) => {
         try{
-            return EventService.getEventsByUserId(userId);
+            return EventService.getEventsByUserId(userId, filter);
         } catch(e) {
             return {
                 message: e.message,
@@ -34,9 +34,9 @@ const eventsMutations = {
             }
         }
     },
-    updateEvent: async(_, {event, id}) => {
+    updateEvent: async(_, {event, id}, {email}) => {
         try{
-            return EventService.updateEvent(event, id);
+            return EventService.updateEvent(event, id, email);
         } catch(e) {
             return {
                 message: e.message,

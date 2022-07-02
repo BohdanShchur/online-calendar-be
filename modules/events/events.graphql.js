@@ -26,6 +26,11 @@ const eventInput = `
         start: Date
         end: Date
     }
+
+    input EventFilterInput {
+        start: Date
+        end: Date
+    }
 `;
 
 module.exports = {eventInput, eventType};

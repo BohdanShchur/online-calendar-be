@@ -8,7 +8,7 @@ const eventSchema = mongoose.Schema({
         start: Date,
         end: Date,
     },
-    notificationTime: Date,
+    notificationTime: Number,
 });
 
 module.exports = mongoose.model("Events", eventSchema);
